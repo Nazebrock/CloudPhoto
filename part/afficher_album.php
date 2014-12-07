@@ -17,10 +17,9 @@
 </div>
 <?php
 include ("../php/transfert.php");
-if(isset($_POST['favoris'])){
+if (isset($_POST['favoris'])) {
     favoris();
-}
-else if (isset($_POST['selection'])) {
+} else if (isset($_POST['selection'])) {
     ajouter_personne();
 }
 ?>
@@ -29,31 +28,76 @@ else if (isset($_POST['selection'])) {
         <div class="col-lg-10">
             <?php
             //recupere les favoris
-           $favoris = "False";
-            $req = "SELECT imgID FROM FAVORIS WHERE UserID = '".$_SESSION['userId']."' AND imgID IN ".
-                   "(SELECT imgID FROM TAG WHERE Tag_albumId = '".$albumId."')";
+            $favoris = "False";
+            $req = "SELECT imgID FROM FAVORIS WHERE UserID = '" . $_SESSION['userId'] . "' AND imgID IN " .
+                    "(SELECT imgID FROM TAG WHERE Tag_albumId = '" . $albumId . "')";
             $ret = mysqli_query($bdd, $req) or die(mysql_error());
             $fav = array();
-            while($col = mysqli_fetch_array($ret)){
+            while ($col = mysqli_fetch_array($ret)) {
                 $fav[] = $col[0];
             }
             mysqli_free_result($ret);
-            
-            //recupere les image de l'album
-            $req = "SELECT img_id, tag_personne, DATE_FORMAT(tag_date, '%d%m%Y%H%i%s') FROM tag WHERE tag_albumid = " . $albumId ;
+
+            //on recupere le nombre de photo à afficher
+            $req = "SELECT count(img_id) FROM tag WHERE tag_albumid = " . $albumId;
             $ret = mysqli_query($bdd, $req) or die(mysql_error());
-            while ($col = mysqli_fetch_row($ret)) {
-                $favoris = "False";
-                foreach ($fav as $id){
-                    if($col[0] == $id){
-                        //L'image fais partie des favoris de l'utilisateur 
-                        $favoris = "True";
-                    }
-                }
-                echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $album[0] . "', '". $favoris ."', ".$_SESSION['userId'].");\" data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "\"></a></div>";
-            }
+            $nbr = mysqli_fetch_row($ret);
             mysqli_free_result($ret);
             ?>
+
+            <div role="tabpanel">
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <?php
+                    for ($i = 1; $i <= ($nbr[0] / 42) + 1; $i++) {
+                        if ($i == 1) {
+                            echo '<li role="presentation" class="active"><a href="#' . $i . '" aria-controls="' . $i . '" role="tab" data-toggle="tab">' . $i . '</a></li>';
+                        } else {
+                            echo '<li role="presentation" ><a href="#' . $i . '" aria-controls="' . $i . '" role="tab" data-toggle="tab">' . $i . '</a></li>';
+                        }
+                    }
+                    ?>
+                </ul>
+                <?php
+                //recupere les image de l'album
+                $req = "SELECT img_id, tag_personne, DATE_FORMAT(tag_date, '%d%m%Y%H%i%s') FROM tag WHERE tag_albumid = " . $albumId;
+                $ret = mysqli_query($bdd, $req) or die(mysql_error());
+                ?>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <?php
+                    $cpt = 1;
+                    $i = 1;
+                    while ($col = mysqli_fetch_row($ret)) {
+                        if($cpt == 1 ){
+                            echo '<div role="tabpanel" class="tab-pane active" id="' . $i . '">';
+                            $i++;
+                        }
+                        else if ($cpt % 43 == 0) {
+                            echo '<div role="tabpanel" class="tab-pane" id="' . $i . '">';
+                            $i++;
+                        }
+                        $favoris = "False";
+                        foreach ($fav as $id) {
+                            if ($col[0] == $id) {
+                                //L'image fais partie des favoris de l'utilisateur
+                                $favoris = "True";
+                            }
+                        }
+                        echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $album[0] . "', '" . $favoris . "', " . $_SESSION['userId'] . ");\" "
+                        . "data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "\"></a></div>";
+                        if ($cpt % 42 == 0) {
+                            echo '</div>';
+                        }
+                        $cpt++;
+                    }
+                    mysqli_free_result($ret);
+                    ?>
+
+                </div>
+            </div>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content ">
@@ -63,7 +107,7 @@ else if (isset($_POST['selection'])) {
                         </div>
                         <div class="modal-body thumbnail">
                             <img id="modal-image" src="">
-                            <div id="personne" class="" ></div>                            
+                            <div id="personne" ></div>                            
                         </div>
                         <div class="modal-footer" >
                             <div id="menu_personne"></div>
