@@ -130,14 +130,17 @@ function modifier_album($albumid) {
 function ajouter_personne() {
     $contenu = $_POST['selection'];
     $contenu = explode('!', $contenu);
-    $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
     $personne = $contenu[1];
     $id = $contenu[0];
+    
+    $personnes = explode(',', $personne);
+    $nbr_personnes = count($personnes)-1;
     include ("connection.php");
     $sqlperso = "UPDATE tag " .
-            "SET Tag_personne = '" .$personne. "' WHERE img_id = ".$id;
+            "SET Tag_personne = '" .$personne. "', nbr_personne = ".$nbr_personnes." WHERE img_id = ".$id;
     $reqperso = mysqli_query($bdd, $sqlperso) or die(mysql_error());
     
+    $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
     header('Location : '.$url);
 }
 
