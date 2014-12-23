@@ -3,7 +3,8 @@
 /* 
 **** TO DO ****
 
- * Recherche (Solo, Duo, Trio, Event, Lieu)
+ * Refaire la BD
+ * Gerer les droit de modif suppression album/photo
  * synchroniser l'affichage des photos selon la page demandé
  * Outil Administration
  * Option Utilisateur

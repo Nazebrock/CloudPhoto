@@ -1,5 +1,4 @@
 <?php
-include ("../php/transfert.php");
 if (isset($_FILES['fic'])) {
     transfert($albumId);
 }
