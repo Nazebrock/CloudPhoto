@@ -39,7 +39,17 @@ if (isset($_GET['id'])) {
 
                     include ("../php/transfert.php");
                     if (isset($_POST['nom'])) {
-                        modifier_album($albumid);
+                        if (isset($_POST['modifier'])) {
+                            modifier_album($albumid);
+                        } elseif (isset($_POST['supprimer'])) {
+                            $req = "DELETE FROM IMAGE WHERE "
+                                    . "img_Id IN "
+                                    . "(SELECT img_ID FROM TAG WHERE Tag_albumId = ".$albumid.")";
+                            $ret = mysqli_query($bdd, $req) or die(mysql_error());
+                            $req = "DELETE FROM album WHERE "
+                                    . "AlbumId = ".$albumid;
+                            $ret = mysqli_query($bdd, $req) or die(mysql_error());
+                        }
                     }
                     ?>
                     <div class="page-header">
@@ -71,16 +81,32 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
                         <div class="col-lg-offset-2">
-                            <button type="submit" class="btn btn-default">Modifier</button>
+                            <button type="submit" name="modifier" class="btn btn-primary">Modifier</button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Supprimer</button>
+                        </div>
+
+                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="col-sm-offset-1">
+                                            <h5>Etes-vous sûr de vouloir supprimer cet album et toutes ces photo ?</h5>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-sm-offset-5">
+                                            <button type="button" class="btn btn-primary" class="close" data-dismiss="modal" aria-label="Close">Non</button>
+                                            <button type="submit" name="supprimer" class="btn btn-danger">Oui</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
-
                 </div>
-
             </div> 
         </div>
     </div>
 </div>
-
 </body>
 </html>

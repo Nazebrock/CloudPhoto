@@ -8,18 +8,18 @@
             <file>file:/C:/wamp/www/CloudPhoto/page/afficher.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/part/layout.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/page/insertion.php</file>
-            <file>file:/C:/wamp/www/CloudPhoto/index.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/Bootstrap/js/tag_personne.js</file>
-            <file>file:/C:/wamp/www/CloudPhoto/page/login.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/php/transfert.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/part/afficher_recherche.php</file>
-            <file>file:/C:/wamp/www/CloudPhoto/part/import.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/part/info_image.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/part/import.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/part/afficher_favoris.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/php/transfert_admin.php</file>
-            <file>file:/C:/wamp/www/CloudPhoto/part/afficher_album.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/php/rechercher.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/page/admin.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/part/afficher_album.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/page/modifier_album.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/page/creer_album.php</file>
         </group>
     </open-files>
 </project-private>

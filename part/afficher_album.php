@@ -3,12 +3,15 @@
         <div class="col-lg-9">
             <?php
             include ("../php/connection.php");
-            $req = "SELECT nom, DATE_FORMAT(tag_date, '%d/%m/%Y'), tag_lieu, tag_event " .
+            $req = "SELECT createurId, nom, DATE_FORMAT(tag_date, '%d/%m/%Y'), tag_lieu, tag_event " .
                     "FROM album WHERE albumid = " . $albumId;
             $ret = mysqli_query($bdd, $req) or die(mysql_error());
             $album = mysqli_fetch_row($ret);
             mysqli_free_result($ret);
-            echo "<div class=\"page-header\"><h1>" . $album[0] . "<small> | " . $album[3] . " à " . $album[2] . " le " . $album[1] . "</small><a href=\"modifier_album.php?id=" . $albumId . "\"class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-cog\"></span></a></h1></div>";
+            echo "<div class=\"page-header\"><h1>" . $album[1] . "<small> | " . $album[4] . " à " . $album[3] . " le " . $album[2] . "</small>";
+                if($album[0] == $_SESSION['userId']){
+                    echo "<a href=\"modifier_album.php?id=" . $albumId . "\"class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-cog\"></span></a></h1></div>";
+                }
             ?>
 
         </div>
@@ -87,7 +90,7 @@ if (isset($_POST['favoris'])) {
                             }
                         }
                         echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $album[0] . "', '" . $favoris . "', " . $_SESSION['userId'] . ");\" "
-                        . "data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "\"></a></div>";
+                        . "data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "\"></button></div>";
                         if ($cpt % 42 == 0) {
                             echo '</div>';
                         }

@@ -9,6 +9,7 @@
  * Outil Administration
  * Option Utilisateur
  * Corriger gestion accent et liste de nom js
+ * Securiser l'insertion d'image
  * Securiser les formulaires et le js
 
 

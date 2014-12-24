@@ -103,7 +103,8 @@ function creer_album() {
     $col = mysqli_fetch_row($req);
     mysqli_free_result($req);
 
-    header('Location: ../page/insertion.php?id=2&album=' . $col[0]);
+    //header('Location: ../page/insertion.php?id=2&album=' . $col[0]);
+    echo '<script>document.location.replace("../page/insertion.php?id=2&album=' . $col[0] .'")</script>';
 }
 
 function modifier_album($albumid) {
