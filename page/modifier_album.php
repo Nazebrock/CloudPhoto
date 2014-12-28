@@ -16,7 +16,6 @@ if (isset($_GET['id'])) {
     <?php include("../part/import.php") ?>
 
     <?php include("../part/layout.php") ?>
-
     <div class="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -44,10 +43,10 @@ if (isset($_GET['id'])) {
                         } elseif (isset($_POST['supprimer'])) {
                             $req = "DELETE FROM IMAGE WHERE "
                                     . "img_Id IN "
-                                    . "(SELECT img_ID FROM TAG WHERE Tag_albumId = ".$albumid.")";
+                                    . "(SELECT img_ID FROM TAG WHERE Tag_albumId = " . $albumid . ")";
                             $ret = mysqli_query($bdd, $req) or die(mysql_error());
                             $req = "DELETE FROM album WHERE "
-                                    . "AlbumId = ".$albumid;
+                                    . "AlbumId = " . $albumid;
                             $ret = mysqli_query($bdd, $req) or die(mysql_error());
                         }
                     }

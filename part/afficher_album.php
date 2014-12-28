@@ -9,7 +9,7 @@
             $album = mysqli_fetch_row($ret);
             mysqli_free_result($ret);
             echo "<div class=\"page-header\"><h1>" . $album[1] . "<small> | " . $album[4] . " à " . $album[3] . " le " . $album[2] . "</small>";
-                if($album[0] == $_SESSION['userId']){
+                if($album[0] == $_SESSION['userId'] || $_SESSION['userId'] == 1){
                     echo "<a href=\"modifier_album.php?id=" . $albumId . "\"class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-cog\"></span></a></h1></div>";
                 }
             ?>

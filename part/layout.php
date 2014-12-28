@@ -8,8 +8,10 @@
 
         <div class=" collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-lef">
-                <li><a class="navbar-brand" href="../index.php">Acceuil</a></li>
-                <li><a  href="insertion.php?id=1">Importer</a></li>
+                <li><a class="navbar-brand" href="../index.php"><img src="../image/logo_b.jpg" alt=""/></a></li>
+                <?php if($_SESSION['userId'] != 1){
+                    echo '<li><a  href="insertion.php?id=1">Importer</a></li>';
+                }?>
                 <li class="dropdown">
                     <a href="album.php" class="dropdown-toggle" data-toggle="dropdown">Album <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -44,8 +46,9 @@
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['prenom']; ?><span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
                      <li><a href="afficher.php?id=3"><span class="glyphicon glyphicon-star right"></span>Favoris</a></li>
-                     <li><a href="#"><span class="glyphicon glyphicon-cog"></span>Option</a></li>
+                     <li><a href="option.php"><span class="glyphicon glyphicon-cog"></span>Option</a></li>
                      <li class="divider"></li>
+                     <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>Aide</a></li>
                      <?php 
                         if($_SESSION['userId'] == 1){
                             echo '<li><a href="../page/admin.php"><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>';
