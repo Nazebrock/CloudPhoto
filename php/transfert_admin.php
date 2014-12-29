@@ -1,5 +1,4 @@
 <?php
-
 function ajout_utilisateur(){
     $prenom = $_POST['prenom'];
     $login = $_POST['login'];
@@ -13,5 +12,4 @@ function ajout_utilisateur(){
     $sql = mysqli_query($bdd, $req) or die(mysqli_error());
     header('Refresh:0');
 }
-
 ?>

@@ -13,7 +13,6 @@ session_start();
             <div class="col-lg-12">
                 <div class="jumbotron text-center">
                     <h2>Bienvenue sur le cloud Photo des LORRAIN !</h1>
-                        <h3>Stat:</h3>
                 </div>
             </div>
         </div>

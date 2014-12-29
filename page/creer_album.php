@@ -1,9 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['prenom'])){
-    setcookie("path", $_SERVER['REQUEST_URI'], time()+120, "/");
-    header('Location: login.php');
-}
+include('../login/verifauth.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,14 +9,7 @@ if (!isset($_SESSION['prenom'])){
     <?php include("../part/layout.php") ?>
 
     <div class="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="jumbotron text-center">
-                    <h2>Bienvenue sur le cloud Photo des LORRAIN !</h1>
-                        <h3>Stat:</h3>
-                </div>
-            </div>
-        </div>
+        <?php include("../part/bandeau.php") ?>
         <div class="row">
             <div class="col-lg-offset-2">
                 <div class="col-lg-3">

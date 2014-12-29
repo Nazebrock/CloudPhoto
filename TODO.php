@@ -10,8 +10,7 @@
  * Synchroniser l'affichage des photos selon la page demandé
  * Faire un system de diapo
  
- * Outil Administration
-    * Option actif/passif des utilisateur
+ * Refaire l'authentification
  
  * Option Utilisateur
  * Gerer les droit de modif/suppression photo

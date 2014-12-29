@@ -7,7 +7,8 @@
         </button>
 
         <div class=" collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-lef">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="navbar-text text-info">*BETA*</li>
                 <li><a class="navbar-brand" href="../index.php"><img src="../image/logo_b.jpg" alt=""/></a></li>
                 <?php if($_SESSION['userId'] != 1){
                     echo '<li><a  href="insertion.php?id=1">Importer</a></li>';
@@ -51,7 +52,7 @@
                      <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>Aide</a></li>
                      <?php 
                         if($_SESSION['userId'] == 1){
-                            echo '<li><a href="../page/admin.php"><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>';
+                            echo '<li><a href="../admin/admin.php"><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>';
                         }
                      ?>
                      <li><a href="../login/logout.php"><span class="glyphicon glyphicon-off"></span>Deconexion</a></li>

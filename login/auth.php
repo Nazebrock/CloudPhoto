@@ -1,15 +1,14 @@
 <?php
-
 function verifauth() {
     $nom = $_POST['nom'];
     $passwd = $_POST['mdp'];
 
     include("../php/connection.php");
     $control = False;
-    $reqcontrol = "SELECT login FROM UTILISATEUR";
+    $reqcontrol = "SELECT login, etat FROM UTILISATEUR";
     $sql = mysqli_query($bdd, $reqcontrol) or die(mysql_error());
     while ($col = mysqli_fetch_row($sql)) {
-        if ($col[0] == $nom) {
+        if ($col[0] == $nom && $col[1] == 1) {
             $control = True;
         }
     }
@@ -39,5 +38,4 @@ function verifauth() {
         echo "ko";
     }
 }
-
 ?>

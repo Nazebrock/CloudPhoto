@@ -1,5 +1,5 @@
 <?php
-session_start();
+include('../login/verifauth.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,14 +9,7 @@ session_start();
     <?php include("../part/layout.php") ?>
 
     <div class="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="jumbotron text-center">
-                    <h2>Bienvenue sur le cloud Photo des LORRAIN !</h2>
-                    <h3>Stat:</h3>
-                </div>
-            </div>
-        </div>
+        <?php include("../part/bandeau.php") ?>
         <div class="row">
             <div class="col-lg-offset-1">
                 <div class="col-lg-3">
