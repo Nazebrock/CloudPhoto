@@ -30,6 +30,12 @@ if (isset($_GET['id'])) {
                         if (isset($_POST['modifier'])) {
                             modifier_album($albumid);
                         } elseif (isset($_POST['supprimer'])) {
+                            //Log
+                            include("../php/connection.php");
+                            $sql = "INSERT INTO LOG (type, info, userid) " .
+                                    "VALUES (4, " . $albumid . ", " . $_SESSION['userId'] . ")";
+                            $req = mysqli_query($bdd, $sql) or die(mysql_error());
+                            //Suppression
                             $req = "DELETE FROM IMAGE WHERE "
                                     . "img_Id IN "
                                     . "(SELECT img_ID FROM TAG WHERE Tag_albumId = " . $albumid . ")";
@@ -96,6 +102,6 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </div>
-<?php include('../part/footer.php')?>
+<?php include('../part/footer.php') ?>
 </body>
 </html>

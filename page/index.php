@@ -73,12 +73,23 @@ include('../login/verifauth.php');
                 <div class="panel panel-info">
                     <div class="panel-heading">BETA NEWS</div>
                     <div class="panel-body">
+                        <?php
+                        $req = "SELECT titre, contenu, DATE_FORMAT(date, '%d/%m/%Y'), id FROM news ORDER BY date DESC LIMIT 10";
+                        $ret = mysqli_query($bdd, $req) or die(mysql_error());
+                        while ($col = mysqli_fetch_array($ret)) {
+                            echo '<div class="media">';
+                            if ($_SESSION['userId'] == 1){
+                                echo '<a class="media-left glyphicon glyphicon-remove" href="../admin/rm_news.php?id='.$col[3].'"></a>';
+                            }
+                            echo '<div class="media-body well"><h4 class="media-heading text-capitalize">'.$col[0].'<small> | '.$col[2].'</small></h4>'.$col[1].'</div></div>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
-        
-            <?php include('../part/footer.php')?>
+
+        <?php include('../part/footer.php') ?>
 
     </body>
 </html>

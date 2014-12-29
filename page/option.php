@@ -41,7 +41,7 @@ include('../login/verifauth.php');
         </div>
         <div class="row">
             <div class="col-lg-offset-1">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             Email

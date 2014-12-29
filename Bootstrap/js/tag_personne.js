@@ -132,13 +132,10 @@ function terminer(id) {
     $('#selection').val(val);
 }
 function enlever_favoris(id, userId) {
-    console.log("enlever");
     var val = "0,"+userId+","+id;
     $('#favoris').val(val);
 }
 function ajouter_favoris(id, userId) {
-    console.log("ajouter");
     var val = "1,"+userId+","+id;
     $('#favoris').val(val);
-    console.log($('#favoris').val());
 }

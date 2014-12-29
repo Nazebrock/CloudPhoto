@@ -65,10 +65,14 @@ function transfert($albumId) {
         $reqtag = mysqli_query($bdd, $sqltag) or die(mysql_error());
 
         $uploaded_img = $uploaded_img . '.' . $image[0];
+//Log
+        $sql = "INSERT INTO LOG (type, info, userid) " .
+                "VALUES (5, " . $image[0] . ", " . $_SESSION['userId'] . ")";
+        $req = mysqli_query($bdd, $sql) or die(mysql_error());
     }
     mysqli_close($bdd);
     //header('Location: ../page/insertion.php?id=3&img=' . $uploaded_img);
-    echo '<script>document.location.replace("../page/insertion.php?id=3&img=' . $uploaded_img .'")</script>';
+    echo '<script>document.location.replace("../page/insertion.php?id=3&img=' . $uploaded_img . '")</script>';
 }
 
 function creer_album() {
@@ -103,8 +107,14 @@ function creer_album() {
     $col = mysqli_fetch_row($req);
     mysqli_free_result($req);
 
+    //Log
+    include("../php/connection.php");
+    $sql = "INSERT INTO LOG (type, info, userid) " .
+            "VALUES (3, " . $col[0] . ", " . $_SESSION['userId'] . ")";
+    $req = mysqli_query($bdd, $sql) or die(mysql_error());
+
     //header('Location: ../page/insertion.php?id=2&album=' . $col[0]);
-    echo '<script>document.location.replace("../page/insertion.php?id=2&album=' . $col[0] .'")</script>';
+    echo '<script>document.location.replace("../page/insertion.php?id=2&album=' . $col[0] . '")</script>';
 }
 
 function modifier_album($albumid) {
@@ -133,36 +143,35 @@ function ajouter_personne() {
     $contenu = explode('!', $contenu);
     $personne = $contenu[1];
     $id = $contenu[0];
-    
+
     $personnes = explode(',', $personne);
-    $nbr_personnes = count($personnes)-1;
+    $nbr_personnes = count($personnes) - 1;
     include ("connection.php");
     $sqlperso = "UPDATE tag " .
-            "SET Tag_personne = '" .$personne. "', nbr_personne = ".$nbr_personnes." WHERE img_id = ".$id;
+            "SET Tag_personne = '" . $personne . "', nbr_personne = " . $nbr_personnes . " WHERE img_id = " . $id;
     $reqperso = mysqli_query($bdd, $sqlperso) or die(mysql_error());
-    
-    $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
-    header('Location : '.$url);
+
+    $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header('Location : ' . $url);
 }
 
-function favoris(){
+function favoris() {
     $contenu = $_POST['favoris'];
     $contenu = explode(',', $contenu);
-    $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
-    
+    $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
     include ("connection.php");
-    if($contenu[0] == 1){
-        $req = "INSERT INTO FAVORIS(".
-               "UserId, imgId)".
-               " VALUES (".$contenu[1].", ".$contenu[2].")";
+    if ($contenu[0] == 1) {
+        $req = "INSERT INTO FAVORIS(" .
+                "UserId, imgId)" .
+                " VALUES (" . $contenu[1] . ", " . $contenu[2] . ")";
+        $sql = mysqli_query($bdd, $req) or die(mysql_error());
+    } else if ($contenu[0] == 0) {
+        $req = "DELETE FROM FAVORIS " .
+                "WHERE UserId = " . $contenu[1] . " AND imgId = " . $contenu[2];
         $sql = mysqli_query($bdd, $req) or die(mysql_error());
     }
-    else if($contenu[0] == 0){
-        $req = "DELETE FROM FAVORIS ".
-               "WHERE UserId = ".$contenu[1]." AND imgId = ".$contenu[2];
-        $sql = mysqli_query($bdd, $req) or die(mysql_error());
-    }
-    header('Location : '.$url);
+    header('Location : ' . $url);
 }
 
 ?>
