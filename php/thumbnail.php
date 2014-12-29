@@ -1,6 +1,7 @@
 <?php
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['size'])) {
     $id = intval($_GET['id']);
+    $size = intval($_GET['size']);
     include ("connection.php");
     $req = "SELECT img_id, img_type, img_blob " .
             "FROM image WHERE img_id = " . $id;
@@ -14,7 +15,7 @@ if (isset($_GET['id'])) {
         
         $TailleImageChoisie = getimagesizefromstring($col[2]);
         
-        $NouvelleLargeur = 200; //Largeur choisie à 350 px mais modifiable
+        $NouvelleLargeur = $size;
         $NouvelleHauteur = ( ($TailleImageChoisie[1] * (($NouvelleLargeur) / $TailleImageChoisie[0])) );
 
         $NouvelleImage = imagecreatetruecolor($NouvelleLargeur, $NouvelleHauteur) or die("Erreur");

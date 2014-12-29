@@ -103,7 +103,7 @@ if (isset($_POST['selection'])) {
                         echo '<h3 class="text-warning">La recherche n\'a donné aucun résultat</h3>';
                     } else {
                         while ($col = mysqli_fetch_row($ret)) {
-                            echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $col[3] . "');\" data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "\"></a></div>";
+                            echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $col[3] . "');\" data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "&size=200\"></a></div>";
                         }
                     }
                 }

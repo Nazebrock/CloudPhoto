@@ -77,6 +77,6 @@ include('../login/verifauth.php');
         </div>
     </div>
 </div>
-
+<?php include('../part/footer.php')?>
 </body>
 </html>

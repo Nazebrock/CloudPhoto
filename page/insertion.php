@@ -70,6 +70,6 @@ if ($id == 3) {
 
             <?php include($corp); ?>
         </div>
-
+<?php include('../part/footer.php')?>
     </body>
 </html>

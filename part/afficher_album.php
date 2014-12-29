@@ -90,7 +90,7 @@ if (isset($_POST['favoris'])) {
                             }
                         }
                         echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $album[0] . "', '" . $favoris . "', " . $_SESSION['userId'] . ");\" "
-                        . "data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "\"></button></div>";
+                        . "data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "&size=200\"></button></div>";
                         if ($cpt % 42 == 0) {
                             echo '</div>';
                         }

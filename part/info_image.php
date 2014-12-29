@@ -33,7 +33,7 @@
                         $favoris = "True";
                     }
                 }
-                echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $col[3] . "', '" . $favoris . "', " . $_SESSION['userId'] . ");\" data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "\"></a></div>";
+                echo "<div class=\"col-xs-2 col-md-2\"><button type=\"button\" onclick=\"modal(" . $col[0] . ", '" . $col[1] . "', '" . $col[2] . "','" . $col[3] . "', '" . $favoris . "', " . $_SESSION['userId'] . ");\" data-toggle=\"modal\" data-target=\"#myModal\" class=\"thumbnail\"><img src=\"../php/thumbnail.php?id=" . $col[0] . "&size=200\"></a></div>";
                 mysqli_free_result($ret);
             }
             ?>

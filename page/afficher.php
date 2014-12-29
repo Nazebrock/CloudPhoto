@@ -29,7 +29,8 @@ if ($id == 3) {
         
         <?php include("../part/bandeau.php") ?>
         <?php include($corp); ?>
-        
+     </div>
+     <?php include('../part/footer.php')?>
     </body>
 </html>
 <?php

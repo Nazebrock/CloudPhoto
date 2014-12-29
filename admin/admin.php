@@ -22,14 +22,7 @@ if ($_SESSION['userId'] != 1) {
         Inserer un Carousel et un thumbnails
     -->
     <div class="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="jumbotron text-center">
-                    <h2>Bienvenue sur le cloud Photo des LORRAIN !</h1>
-                        <h3>Stat:</h3>
-                </div>
-            </div>
-        </div>
+        <?php include("../part/bandeau.php") ?>
         <?php
         include("../php/transfert_admin.php");
         if (isset($_POST['prenom']) and isset($_POST['login'])) {

@@ -23,12 +23,12 @@ include('../login/verifauth.php');
         }
         mysqli_free_result($ret);
         ?>
-        <row>
+        <div class="row">
             <div class="col-lg-offset-1">
                 <div class="col-lg-5">
-                    <div class="panel-info">
-                        <div class="panel-info panel-heading">10 dernières photos</div>
-                        <div class="panel-info panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">10 dernières photos</div>
+                        <div class="panel-body">
                             <div id="carousel" class="carousel slide " data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
@@ -67,7 +67,18 @@ include('../login/verifauth.php');
                         </div>
                     </div>
                 </div>
-        </row>
-    </div>
-</body>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="panel panel-info">
+                    <div class="panel-heading">BETA NEWS</div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <?php include('../part/footer.php')?>
+
+    </body>
 </html>

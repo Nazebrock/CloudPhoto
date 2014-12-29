@@ -96,5 +96,6 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </div>
+<?php include('../part/footer.php')?>
 </body>
 </html>

@@ -21,7 +21,7 @@
                 $img = mysqli_fetch_row($ret);
                 echo "<div class=\"col-xs-3 col-md-3 text-center\">".
                      "<a href=\"insertion.php?id=2&album=" . $col[1] . "\" class=\"thumbnail\">".
-                     "<img src=\"../php/thumbnail.php?id=" . $img[0] . "\">".
+                     "<img src=\"../php/thumbnail.php?id=" . $img[0] . "&size=200\">".
                      "<div class=\"caption\">".
                      "<h5>" . $col[0] . "</h5></div></a></div>";
             }
