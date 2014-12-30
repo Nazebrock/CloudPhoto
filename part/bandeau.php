@@ -21,7 +21,7 @@ include('../php/connection.php');
         <div class="jumbotron text-center">
             <h2>Bienvenue sur le cloud Photo des LORRAIN !</h2>
             <h3>Stat: <?php echo $nbr_img[0] ?> images dans <?php echo $nbr_album[0] ?> Albums</h3>
-            <h4 class="text-danger"> <?php echo $nbr_img_empty[0] ?> images où personne n'est taggé !</h4>
+            <h4 class="text-danger"><a href="afficher.php?id=4"> <?php echo $nbr_img_empty[0] ?> images</a> où personne n'est taggé !</h4>
         </div>
     </div>
 </div>
