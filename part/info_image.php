@@ -11,7 +11,7 @@
             
             //recupere les favoris
             $favoris = "False";
-            $req = "SELECT imgId FROM FAVORIS WHERE UserID = " . $_SESSION['userId'];
+            $req = "SELECT imgId FROM favoris WHERE UserID = " . $_SESSION['userId'];
             $ret = mysqli_query($bdd, $req) or die(mysql_error());
 
             $fav = array();
@@ -21,8 +21,8 @@
             mysqli_free_result($ret);
 
             for ($i = 1; $i < $taille; $i++) {
-                $req = "SELECT TAG.img_id, TAG.tag_personne, DATE_FORMAT(TAG.tag_date, '%d%m%Y%H%i%s'), ALBUM.nom FROM TAG, ALBUM WHERE "
-                        . "TAG.tag_albumId = ALBUM.albumId AND "
+                $req = "SELECT tag.img_id, tag.tag_personne, DATE_FORMAT(tag.tag_date, '%d%m%Y%H%i%s'), album.nom FROM tag, album WHERE "
+                        . "tag.tag_albumId = album.albumId AND "
                         . "img_id =" . $imageId[$i];
                 $ret = mysqli_query($bdd, $req) or die(mysql_error());
                 $col = mysqli_fetch_row($ret);

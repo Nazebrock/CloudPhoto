@@ -9,26 +9,25 @@
 <?php
 include ("../php/connection.php");
 //on recupere les favoris
-$req = "SELECT FAVORIS.imgid FROM FAVORIS, TAG WHERE "
-        . "FAVORIS.imgid = TAG.img_id AND TAG.nbr_personne = 0";
+$req = "SELECT favoris.imgid FROM favoris, tag WHERE "
+        . "favoris.imgid = tag.img_id AND tag.nbr_personne = 0";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $fav = array();
 while ($col = mysqli_fetch_array($ret)) {
     $fav[] = $col[0];
 }
-echo "1";
 mysqli_free_result($ret);
 //on recupere le nombre de photo à afficher
-$req = "SELECT count(img_id) FROM TAG WHERE "
+$req = "SELECT count(img_id) FROM tag WHERE "
         . "nbr_personne = 0";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $nbr = mysqli_fetch_row($ret);
 mysqli_free_result($ret);
 
 //recupere les images sans tag
-$req = "SELECT TAG.img_id, TAG.tag_personne, DATE_FORMAT(TAG.tag_date, '%d%m%Y%H%i%s'), ALBUM.nom FROM TAG, ALBUM WHERE "
-        . "TAG.tag_albumId = ALBUM.albumId AND "
-        . "TAG.nbr_personne = 0";
+$req = "SELECT tag.img_id, tag.tag_personne, DATE_FORMAT(tag.tag_date, '%d%m%Y%H%i%s'), album.nom FROM tag, album WHERE "
+        . "tag.tag_albumId = album.albumId AND "
+        . "tag.nbr_personne = 0";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $img = array();
 $i = 0;

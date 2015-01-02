@@ -7,6 +7,7 @@
  * 4 = suppr album      info = albumId
  * 5 = insertion image  info = img_id
  * 6 =
+ * 7 = clic image       info = img_id
  */
 include('../login/verifauth.php');
 if ($_SESSION['userId'] != 1) {
@@ -37,7 +38,7 @@ if ($_SESSION['userId'] != 1) {
             ajout_utilisateur();
         }
         if (isset($_POST['news']) && isset($_POST['contenu']) && isset($_POST['titre'])){
-            $req = "INSERT INTO NEWS (titre, contenu)"
+            $req = "INSERT INTO news (titre, contenu)"
                     . "VALUES ('".$_POST['titre']."', '".$_POST['contenu']."')";
             $sql = mysqli_query($bdd, $req) or die(mysql_error());
         }
@@ -65,10 +66,31 @@ if ($_SESSION['userId'] != 1) {
                                 include ("../php/connection.php");
                                 $etat = "";
                                 $option = '';
-                                $req = "SELECT userid, prenom, login, email, Etat FROM UTILISATEUR ORDER BY userId";
+                                $req = "SELECT userid, prenom, login, email, Etat FROM utilisateur ORDER BY userId";
                                 $sql = mysqli_query($bdd, $req) or die(mysql_error());
+                                $user = array();
+                                $i = 0;
                                 while ($col = mysqli_fetch_row($sql)) {
+                                    $user[$i][0] = $col[0];
+                                    $user[$i][1] = $col[1];
+                                    $user[$i][2] = $col[2];
+                                    $user[$i][3] = $col[3];
+                                    $user[$i][4] = $col[4];
+                                    $i++;
+                                }
+                                mysqli_free_result($sql);
+                                foreach ($user as $col) {
                                     $option = '<a href="modifier.php?id=' . $col[0] . '"><span class="glyphicon glyphicon-cog"></span></a>';
+                                    //recupère le nombre d'album
+                                    $req = "SELECT count(albumId) FROM album WHERE createurid = ".$col[0];
+                                    $sql = mysqli_query($bdd, $req) or die(mysql_error());
+                                    $nbr_album = mysqli_fetch_row($sql);
+                                    mysqli_free_result($sql);
+                                    //recupere le nombre de photos
+                                    $req = "SELECT count(img_id) FROM tag WHERE userid = ".$col[0];
+                                    $sql = mysqli_query($bdd, $req) or die(mysql_error());
+                                    $nbr_img = mysqli_fetch_row($sql);
+                                    mysqli_free_result($sql);
                                     if ($col[0] == 1) {
                                         $etat = '<button class="btn btn-success"></button>';
                                     } elseif ($col[4] == 1) {
@@ -80,8 +102,8 @@ if ($_SESSION['userId'] != 1) {
                                     <td>' . $col[1] . '</td>
                                     <td>' . $col[2] . '</td>
                                     <td>' . $col[3] . '</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>' . $nbr_album[0] . '</td>
+                                    <td>' . $nbr_img[0] . '</td>
                                     <td>' . $etat . '</td>
                                     <td>' . $option . '</td>'
                                     . '</tr>';

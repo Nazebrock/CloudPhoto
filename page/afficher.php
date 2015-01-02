@@ -20,14 +20,9 @@ if ($id == 4) {
 ?>
 <!DOCTYPE html>
 <html>
-    <script src="../Bootstrap/js/blur.min.js.js"></script>
-
     <?php include("../part/import.php") ?>
 
     <?php include("../part/layout.php") ?>
-    <!-- 
-        Inserer un Carousel et un thumbnails
-    -->
     <div class="page-wrapper">
 
         <?php include("../part/bandeau.php") ?>
@@ -48,7 +43,7 @@ if ($id == 4) {
                         <!-- Nav tabs -->
                         <ul class="nav nav-pills" role="tablist">
                             <?php
-                            for ($i = 1; $i <= ($nbr[0] / 42) + 1; $i++) {
+                            for ($i = 1; $i <= ($nbr[0] / 48) + 1; $i++) {
                                 if ($i == 1) {
                                     echo '<li role="presentation" class="active"><a href="#' . $i . '" aria-controls="' . $i . '" role="tab" data-toggle="tab">' . $i . '</a></li>';
                                 } else {
@@ -67,7 +62,7 @@ if ($id == 4) {
                                 if ($cpt == 1) {
                                     echo '<div role="tabpanel" class="tab-pane active" id="' . $i . '">'; //met le premier tabpanel actif
                                     $i++;
-                                } else if ($cpt % 43 == 0) {
+                                } else if ($cpt % 49 == 0) {
                                     echo '<div role="tabpanel" class="tab-pane" id="' . $i . '">';//sinon met simplement un tabpanel
                                     $i++;
                                 }
@@ -84,7 +79,7 @@ if ($id == 4) {
                                     . '<img src="../php/thumbnail.php?id=' . $image[0] . '&size=200">'
                                     . '</button>'
                                     . '</div>';
-                                if ($cpt % 42 == 0) {
+                                if ($cpt % 48 == 0) {
                                     echo '</div>';
                                 }
                                 $cpt++;

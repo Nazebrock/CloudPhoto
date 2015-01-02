@@ -66,7 +66,7 @@ function transfert($albumId) {
 
         $uploaded_img = $uploaded_img . '.' . $image[0];
 //Log
-        $sql = "INSERT INTO LOG (type, info, userid) " .
+        $sql = "INSERT INTO log (type, info, userid) " .
                 "VALUES (5, " . $image[0] . ", " . $_SESSION['userId'] . ")";
         $req = mysqli_query($bdd, $sql) or die(mysql_error());
     }
@@ -109,7 +109,7 @@ function creer_album() {
 
     //Log
     include("../php/connection.php");
-    $sql = "INSERT INTO LOG (type, info, userid) " .
+    $sql = "INSERT INTO log (type, info, userid) " .
             "VALUES (3, " . $col[0] . ", " . $_SESSION['userId'] . ")";
     $req = mysqli_query($bdd, $sql) or die(mysql_error());
 
@@ -152,7 +152,8 @@ function ajouter_personne() {
     $reqperso = mysqli_query($bdd, $sqlperso) or die(mysql_error());
 
     $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    header('Location : ' . $url);
+    //header('Location : ' . $url);
+    echo '<script>document.location.replace("' . $url . '")</script>';
 }
 
 function favoris() {
@@ -162,16 +163,17 @@ function favoris() {
 
     include ("connection.php");
     if ($contenu[0] == 1) {
-        $req = "INSERT INTO FAVORIS(" .
+        $req = "INSERT INTO favoris(" .
                 "UserId, imgId)" .
                 " VALUES (" . $contenu[1] . ", " . $contenu[2] . ")";
         $sql = mysqli_query($bdd, $req) or die(mysql_error());
     } else if ($contenu[0] == 0) {
-        $req = "DELETE FROM FAVORIS " .
+        $req = "DELETE FROM favoris " .
                 "WHERE UserId = " . $contenu[1] . " AND imgId = " . $contenu[2];
         $sql = mysqli_query($bdd, $req) or die(mysql_error());
     }
-    header('Location : ' . $url);
+    //header('Location : ' . $url);
+    echo '<script>document.location.replace("' . $url . '")</script>';
 }
 
 ?>

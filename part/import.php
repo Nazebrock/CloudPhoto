@@ -8,8 +8,4 @@
 
     <script src="../Bootstrap/js/jquery-1.10.2.js"></script>
     <script src="../Bootstrap/js/bootstrap.min.js"></script>
-    <script src="../Bootstrap/font-awesome/css/font-awesome.min.css"></script>
-
-
-    <link href="../Bootstrap/css/sb-admin.css" rel="stylesheet">
 </head>

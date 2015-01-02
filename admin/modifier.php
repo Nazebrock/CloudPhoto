@@ -41,7 +41,7 @@ if ($_SESSION['userId'] != 1) {
                     mysqli_free_result($ret);
 
                     if(isset($_POST['nom']) and isset($_POST['login'])){
-                        $req = "UPDATE UTILISATEUR "
+                        $req = "UPDATE utilisateur "
                                 ."SET login = '".$_POST['login']."', prenom = '".$_POST['nom']."', email = '".$_POST['email']."' "
                                 . "WHERE userid = ". $id;
                         $ret = mysqli_query($bdd, $req) or die(mysql_error());

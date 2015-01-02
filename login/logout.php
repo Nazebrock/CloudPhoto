@@ -2,7 +2,7 @@
 
 session_start();
 include("../php/connection.php");
-$req = "INSERT INTO LOG (type, userid) "
+$req = "INSERT INTO log (type, userid) "
                 . "VALUES (2, ".$_SESSION['userId'].")";
 $sql = mysqli_query($bdd, $req) or die(mysql_error());
 session_unset();

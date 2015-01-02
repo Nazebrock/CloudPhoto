@@ -3,14 +3,10 @@ include('../login/verifauth.php');
 ?>
 <!DOCTYPE html>
 <html>
-    <script src="../Bootstrap/js/blur.min.js.js"></script>
-
     <?php include("../part/import.php") ?>
 
     <?php include("../part/layout.php") ?>
-    <!--
-        Inserer un Carousel et un thumbnails
-    -->
+
     <div class="page-wrapper">
         <?php include("../part/bandeau.php") ?>
         <?php

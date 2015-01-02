@@ -32,11 +32,11 @@ if (isset($_GET['id'])) {
                         } elseif (isset($_POST['supprimer'])) {
                             //Log
                             include("../php/connection.php");
-                            $sql = "INSERT INTO LOG (type, info, userid) " .
+                            $sql = "INSERT INTO log (type, info, userid) " .
                                     "VALUES (4, " . $albumid . ", " . $_SESSION['userId'] . ")";
                             $req = mysqli_query($bdd, $sql) or die(mysql_error());
                             //Suppression
-                            $req = "DELETE FROM IMAGE WHERE "
+                            $req = "DELETE FROM image WHERE "
                                     . "img_Id IN "
                                     . "(SELECT img_ID FROM TAG WHERE Tag_albumId = " . $albumid . ")";
                             $ret = mysqli_query($bdd, $req) or die(mysql_error());

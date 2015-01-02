@@ -14,7 +14,7 @@ include('../login/verifauth.php');
             <?php
             if (isset($_POST['email'])) {
                 if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                    $req = "UPDATE UTILISATEUR SET email = '" . $_POST['email'] . "' WHERE userid = " . $_SESSION['userId'];
+                    $req = "UPDATE utilisateur SET email = '" . $_POST['email'] . "' WHERE userid = " . $_SESSION['userId'];
                     $sql = mysqli_query($bdd, $req) or die(mysql_error());
                     echo '<div class="col-lg-offset-2"><div class="alert alert-info alert-dismissible text-center col-lg-1">Email modifié !</div></div>';
                     header('location: option.php');
@@ -25,7 +25,7 @@ include('../login/verifauth.php');
             if (isset($_POST['pwd1']) && isset($_POST['pwd2'])) {
                 if ($_POST['pwd1'] == $_POST['pwd2']) {
                     if (preg_match('`^([[:alnum:]]{6,15})$`', $_POST['pwd1'])) {
-                        $req = "UPDATE UTILISATEUR SET pass = '" . $_POST['pwd1'] . "' WHERE userid = " . $_SESSION['userId'];
+                        $req = "UPDATE utilisateur SET pass = '" . $_POST['pwd1'] . "' WHERE userid = " . $_SESSION['userId'];
                         $sql = mysqli_query($bdd, $req) or die(mysql_error());
                         echo '<div class="col-lg-offset-2"><div class="alert alert-info alert-dismissible text-center col-lg-1">Mot de passe modifié !</div></div>';
                         header('location: option.php');

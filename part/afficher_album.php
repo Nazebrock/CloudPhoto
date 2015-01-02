@@ -20,8 +20,8 @@
 <?php
 //recupere les favoris
 $favoris = "False";
-$req = "SELECT imgID FROM FAVORIS WHERE UserID = '" . $_SESSION['userId'] . "' AND imgID IN " .
-        "(SELECT imgID FROM TAG WHERE Tag_albumId = '" . $albumId . "')";
+$req = "SELECT imgID FROM favoris WHERE UserID = '" . $_SESSION['userId'] . "' AND imgID IN " .
+        "(SELECT imgID FROM tag WHERE Tag_albumId = '" . $albumId . "')";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $fav = array();
 while ($col = mysqli_fetch_array($ret)) {

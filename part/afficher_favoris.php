@@ -11,17 +11,17 @@
 <?php
 include ("../php/connection.php");
 //on recupere le nombre de photo à afficher
-$req = "SELECT count(img_id) FROM TAG, ALBUM WHERE "
-        . "TAG.tag_albumId = ALBUM.albumId AND "
-        . "img_id IN (SELECT imgId FROM FAVORIS WHERE userId = " . $_SESSION['userId'] . ")";
+$req = "SELECT count(img_id) FROM tag, album WHERE "
+        . "tag.tag_albumId = album.albumId AND "
+        . "img_id IN (SELECT imgId FROM favoris WHERE userId = " . $_SESSION['userId'] . ")";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $nbr = mysqli_fetch_row($ret);
 mysqli_free_result($ret);
 
 //recupere les image des favoris
-$req = "SELECT TAG.img_id, TAG.tag_personne, DATE_FORMAT(TAG.tag_date, '%d%m%Y%H%i%s'), ALBUM.nom FROM TAG, ALBUM WHERE "
-        . "TAG.tag_albumId = ALBUM.albumId AND "
-        . "img_id IN (SELECT imgId FROM FAVORIS WHERE userId = " . $_SESSION['userId'] . ")";
+$req = "SELECT tag.img_id, tag.tag_personne, DATE_FORMAT(tag.tag_date, '%d%m%Y%H%i%s'), album.nom FROM tag, album WHERE "
+        . "tag.tag_albumId = album.albumId AND "
+        . "img_id IN (SELECT imgId FROM favoris WHERE userId = " . $_SESSION['userId'] . ")";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $img = array();
 $fav = array();
