@@ -36,7 +36,7 @@ function verifauth() {
             $path = $_COOKIE['path'];
             setcookie("path", NULL, -1);
         } else {
-            $path = "/CloudPhoto/";
+            $path = "index.php";
         }
         header('location: ' . $path);
     } else {
