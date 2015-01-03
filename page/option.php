@@ -24,13 +24,13 @@ include('../login/verifauth.php');
             }
             if (isset($_POST['pwd1']) && isset($_POST['pwd2'])) {
                 if ($_POST['pwd1'] == $_POST['pwd2']) {
-                    if (preg_match('`^([[:alnum:]]{6,15})$`', $_POST['pwd1'])) {
+                    if (preg_match('`^([[:alnum:]]{6,20})$`', $_POST['pwd1'])) {
                         $req = "UPDATE utilisateur SET pass = '" . $_POST['pwd1'] . "' WHERE userid = " . $_SESSION['userId'];
                         $sql = mysqli_query($bdd, $req) or die(mysql_error());
                         echo '<div class="col-lg-offset-2"><div class="alert alert-info alert-dismissible text-center col-lg-1">Mot de passe modifié !</div></div>';
                         header('location: option.php');
                     } else {
-                        echo '<div class="col-lg-offset-4"><div class="alert alert-danger alert-dismissible text-center col-lg-7">Le mot de passe ne doit contenir que des chiffres et des lettres et doit faire entre 6 et 15 charactères</div></div>';
+                        echo '<div class="col-lg-offset-4"><div class="alert alert-danger alert-dismissible text-center col-lg-7">Le mot de passe ne doit contenir que des chiffres et des lettres et doit faire entre 6 et 20 charactères</div></div>';
                     }
                 }
                 else{

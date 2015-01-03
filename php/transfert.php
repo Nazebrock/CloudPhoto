@@ -105,7 +105,7 @@ function creer_album() {
     $req = "SELECT nom FROM album";
     $sql = mysqli_query($bdd, $req);
     while($col = mysqli_fetch_row($sql)){
-        if($nom = $col[0]){
+        if($nom == $col[0]){
             echo "<div class=\"alert alert-warning\" role=\"alert\">Nom d'album déjà utilisé !</div>";
             return 0;
         }
@@ -156,7 +156,7 @@ function modifier_album($albumid) {
     $req = "SELECT nom FROM album";
     $sql = mysqli_query($bdd, $req);
     while($col = mysqli_fetch_row($sql)){
-        if($nom = $col[0]){
+        if($nom == $col[0]){
             echo "<div class=\"alert alert-warning\" role=\"alert\">Nom d'album déjà utilisé !</div>";
             return 0;
         }

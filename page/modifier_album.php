@@ -36,9 +36,13 @@ if (isset($_GET['id'])) {
                                     "VALUES (4, " . $albumid . ", " . $_SESSION['userId'] . ")";
                             $req = mysqli_query($bdd, $sql) or die(mysql_error());
                             //Suppression
+                            $req = "DELETE FROM favoris WHERE "
+                                    . "imgId IN "
+                                    . "(SELECT img_ID FROM tag WHERE Tag_albumId = " . $albumid . ")";
+                            $ret = mysqli_query($bdd, $req) or die(mysql_error());
                             $req = "DELETE FROM image WHERE "
                                     . "img_Id IN "
-                                    . "(SELECT img_ID FROM TAG WHERE Tag_albumId = " . $albumid . ")";
+                                    . "(SELECT img_ID FROM tag WHERE Tag_albumId = " . $albumid . ")";
                             $ret = mysqli_query($bdd, $req) or die(mysql_error());
                             $req = "DELETE FROM album WHERE "
                                     . "AlbumId = " . $albumid;
