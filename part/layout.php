@@ -38,7 +38,7 @@
             ?>
             <form class="navbar-form navbar-nav" role="form" enctype="multipart/form-data" action="#" method="post">
                 <div class="form-group">
-                    <input type="text" name="recherche" class="form-control" placeholder="Rechercher des photo">
+                    <input type="text" name="recherche" class="form-control" placeholder="Rechercher des photos">
                 </div>
                 <button type="submit" class="btn btn-default glyphicon glyphicon-search" ></button>
             </form>
@@ -49,7 +49,7 @@
                      <li><a href="afficher.php?id=3"><span class="glyphicon glyphicon-star right"></span>Favoris</a></li>
                      <li><a href="option.php"><span class="glyphicon glyphicon-cog"></span>Option</a></li>
                      <li class="divider"></li>
-                     <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>Aide</a></li>
+                     <li><a href="aide.php"><span class="glyphicon glyphicon-question-sign"></span>Aide</a></li>
                      <?php 
                         if($_SESSION['userId'] == 1){
                             echo '<li><a href="../admin/admin.php"><span class="glyphicon glyphicon-wrench"></span>Admin</a></li>';

@@ -37,7 +37,7 @@ mysqli_free_result($ret);
 
 
 //recupere les images de l'album
-$req = "SELECT img_id, tag_personne, DATE_FORMAT(tag_date, '%d%m%Y%H%i%s') FROM tag WHERE tag_albumid = " . $albumId;
+$req = "SELECT img_id, tag_personne, DATE_FORMAT(tag_date, '%d%m%Y%H%i%s'), userid FROM tag WHERE tag_albumid = " . $albumId;
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $img = array();
 $i = 0;
@@ -46,6 +46,7 @@ while ($col = mysqli_fetch_row($ret)) {
     $img[$i][1] = $col[1];
     $img[$i][2] = $col[2];
     $img[$i][3] = $album[1];
+    $img[$i][4] = $col[3];
     $i++;
 }
 mysqli_free_result($ret);

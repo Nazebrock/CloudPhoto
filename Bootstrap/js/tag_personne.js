@@ -1,8 +1,9 @@
 //initialise la preview d'une photo
-function modal(id, personne, date, album, favoris, userId) {
+function modal(id, personne, date, album, favoris, userId, createurId) {
     $('#personne').empty();
     $('#menu_personne').empty();
     $('#myModalLabel').empty();
+    $('#btn_close').empty();
     var date_format = '';
     var menu = '';
     var separateur = ["", "/", "", "/", "", "", "", " ", "", ":", "", ":", "", ""];
@@ -10,7 +11,13 @@ function modal(id, personne, date, album, favoris, userId) {
         var c = date.charAt(i);
         date_format += c + separateur[i];
     }
-    
+    if(userId == createurId || userId == 1){
+        $('#btn_close').append('<button type="button" class="btn btn_danger" data-toggle="modal" data-target="#modal">Supprimer</button>');
+        $('#suppr_id').val(id);
+    }
+    else{
+        $('#btn_close').append('<button type="submit" class="close" data-dismiss="modal" name="supprimer"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>');
+    }
     //Si l'image ne fais pas partie des favoris de l'utilisateur on affiche une etoile bleu
     if (favoris == "True") {
         var favoris = '<form class="form form-inline" role="form" enctype="multipart/form-data"  method="post">'
@@ -37,7 +44,7 @@ function modal(id, personne, date, album, favoris, userId) {
     //on ajoute le titre
     $('#myModalLabel').append(titre);
     //on ajoute la photo
-    $('#modal-image').attr('src', '../php/apercu.php?id=' + id);
+    $('#modal-image').attr('src', '../php/thumbnail.php?id=' + id + '&size=1200');
 
 
 }

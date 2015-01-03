@@ -33,6 +33,8 @@ if ($id == 4) {
             favoris();
         } else if (isset($_POST['selection'])) {
             ajouter_personne();
+        } else if (isset($_POST['supprimer'])) {
+            supprimer_photo($_SESSION['userId']);
         }
         ?>
         <div class="row">
@@ -63,7 +65,7 @@ if ($id == 4) {
                                     echo '<div role="tabpanel" class="tab-pane active" id="' . $i . '">'; //met le premier tabpanel actif
                                     $i++;
                                 } else if ($cpt % 49 == 0) {
-                                    echo '<div role="tabpanel" class="tab-pane" id="' . $i . '">';//sinon met simplement un tabpanel
+                                    echo '<div role="tabpanel" class="tab-pane" id="' . $i . '">'; //sinon met simplement un tabpanel
                                     $i++;
                                 }
                                 $favoris = "False";
@@ -74,11 +76,11 @@ if ($id == 4) {
                                     }
                                 }
                                 echo '<div class="col-xs-2 col-md-2">'
-                                    . '<button type="button" onclick="modal(\'' . $image[0] . '\', \'' . $image[1] . '\', \'' . $image[2] . '\',\'' . $image[3] . '\', \'' . $favoris . '\', \'' . $_SESSION['userId'] . '\');" '
-                                    . 'data-toggle="modal" data-target="#myModal" class="thumbnail">'
-                                    . '<img src="../php/thumbnail.php?id=' . $image[0] . '&size=200">'
-                                    . '</button>'
-                                    . '</div>';
+                                . '<button type="button" onclick="modal(\'' . $image[0] . '\', \'' . $image[1] . '\', \'' . $image[2] . '\',\'' . $image[3] . '\', \'' . $favoris . '\', \'' . $_SESSION['userId'] . '\', \'' . $image[4] . '\');" '
+                                . 'data-toggle="modal" data-target="#myModal" class="thumbnail">'
+                                . '<img src="../php/thumbnail.php?id=' . $image[0] . '&size=200">'
+                                . '</button>'
+                                . '</div>';
                                 if ($cpt % 48 == 0) {
                                     echo '</div>';
                                 }
@@ -88,19 +90,41 @@ if ($id == 4) {
 
                         </div>
                     </div>
+                    <!-- Modal Photo -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content ">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <div class="close"id="btn_close"></div>
                                     <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
                                 <div class="modal-body thumbnail">
                                     <img id="modal-image" src="">
-                                    <div id="personne" ></div>                            
+                                    <div id="personne" ></div>
                                 </div>
                                 <div class="modal-footer" >
                                     <div id="menu_personne"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal verification -->
+                    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="col-sm-offset-2">
+                                        <h5>Etes-vous sûr de vouloir supprimer cette Photo ?</h5>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-sm-offset-5">
+                                        <form role="form" enctype="multipart/form-data" action="#" method="post">
+                                            <button type="button" class="btn btn-primary" class="close" data-dismiss="modal" aria-label="Close">Non</button>
+                                            <button type="submit" name="supprimer" class="btn btn-danger">Oui</button>
+                                            <input type="hidden" name="suppr_id" id="suppr_id">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

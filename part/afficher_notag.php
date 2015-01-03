@@ -25,7 +25,7 @@ $nbr = mysqli_fetch_row($ret);
 mysqli_free_result($ret);
 
 //recupere les images sans tag
-$req = "SELECT tag.img_id, tag.tag_personne, DATE_FORMAT(tag.tag_date, '%d%m%Y%H%i%s'), album.nom FROM tag, album WHERE "
+$req = "SELECT tag.img_id, tag.tag_personne, DATE_FORMAT(tag.tag_date, '%d%m%Y%H%i%s'), album.nom, tag.userid FROM tag, album WHERE "
         . "tag.tag_albumId = album.albumId AND "
         . "tag.nbr_personne = 0";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
@@ -36,6 +36,7 @@ while ($col = mysqli_fetch_row($ret)) {
     $img[$i][1] = $col[1];
     $img[$i][2] = $col[2];
     $img[$i][3] = $col[3];
+    $img[$i][4] = $col[4];
     $i++;
 }
 mysqli_free_result($ret);

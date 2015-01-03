@@ -64,7 +64,7 @@ if ($recherche == "") {
         echo '<h3 class="text-warning">Il ne peut y avoir qu\'une seul option "solo", "duo", "trio" ou "groupe" dans une recherche</h3>';
     } else {
 
-        $sql = "SELECT img_id, tag_personne, DATE_FORMAT(T.tag_date, '%d%m%Y%H%i%s'), nom " .
+        $sql = "SELECT img_id, tag_personne, DATE_FORMAT(T.tag_date, '%d%m%Y%H%i%s'), nom, T.userid " .
                 "FROM tag T, album WHERE tag_albumid = albumid AND ";
 
         if ($option == True) {
@@ -82,7 +82,6 @@ if ($recherche == "") {
             }
         }
         $sql = substr($sql, 0, strlen($sql) - 3);
-        echo $sql;
 
         include ("../php/connection.php");
 
@@ -99,6 +98,7 @@ if ($recherche == "") {
                 $img[$i][1] = $col[1];
                 $img[$i][2] = $col[2];
                 $img[$i][3] = $col[3];
+                $img[$i][4] = $col[4];
                 $i++;
             }
             $nbr = $i+1; //nombre de photos a afficher

@@ -10,6 +10,20 @@ function transfert($albumId) {
         $img_nom = $_FILES['fic']['name'][$i]; //recupere le nom
         $img_blob = file_get_contents($_FILES['fic']['tmp_name'][$i]);
 
+        if(isset($img_type) && isset($img_taille) && isset($img_blob)){
+            if($img_taille > 10000000){
+                echo "Image trop lourde (Taille max: 10Mo)";
+                return 0;
+            }
+            elseif($img_type != "image/jpeg" && $img_type != "image/gif" && $img_type != "image/png" && $img_type != "image/tiff"){
+                echo "Format d'image non supporté (Format supporté: jpeg, png, gif, tiff)";
+                return 0;
+            }
+        }
+        else{
+            echo "erreur";
+            return 0;
+        }
         include ("connection.php");
 
 //on insert l'image
@@ -88,7 +102,16 @@ function creer_album() {
     }
 
     include ("connection.php");
-
+    $req = "SELECT nom FROM album";
+    $sql = mysqli_query($bdd, $req);
+    while($col = mysqli_fetch_row($sql)){
+        if($nom = $col[0]){
+            echo "<div class=\"alert alert-warning\" role=\"alert\">Nom d'album déjà utilisé !</div>";
+            return 0;
+        }
+    }
+    mysqli_free_result($sql);
+    
     $sqlalbum = "INSERT INTO album (" .
             "createurid, nom, Tag_date, Tag_lieu, Tag_event" .
             ") VALUES (" .
@@ -129,6 +152,16 @@ function modifier_album($albumid) {
     }
 
     include ("connection.php");
+    
+    $req = "SELECT nom FROM album";
+    $sql = mysqli_query($bdd, $req);
+    while($col = mysqli_fetch_row($sql)){
+        if($nom = $col[0]){
+            echo "<div class=\"alert alert-warning\" role=\"alert\">Nom d'album déjà utilisé !</div>";
+            return 0;
+        }
+    }
+    mysqli_free_result($sql);
 
     $sqlalbum = "UPDATE album " .
             "SET nom = '" . $nom . "', tag_date = '" . $date . "', tag_lieu = '" . $lieu . "', tag_event = '" . $event . "'" .
@@ -174,6 +207,27 @@ function favoris() {
     }
     //header('Location : ' . $url);
     echo '<script>document.location.replace("' . $url . '")</script>';
+}
+
+function supprimer_photo($userid){
+    
+    $id = $_POST['suppr_id'];
+    
+    include ("connection.php");
+    $req = "DELETE FROM favoris WHERE imgid=".$id." AND userid =".$userid;
+    $sql = mysqli_query($bdd, $req) or die(mysql_error());
+    $req = "DELETE FROM image WHERE img_id=".$id;
+    $sql = mysqli_query($bdd, $req) or die(mysql_error());
+    $req = "DELETE FROM tag WHERE img_id=".$id;
+    $sql = mysqli_query($bdd, $req) or die(mysql_error());
+    
+    //log
+    $sql = "INSERT INTO log (type, info, userid) " .
+                "VALUES (6, " . $id . ", " . $userid . ")";
+    $req = mysqli_query($bdd, $sql) or die(mysql_error());
+    
+    $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+     echo '<script>document.location.replace("' . $url . '")</script>';
 }
 
 ?>
