@@ -153,7 +153,7 @@ function modifier_album($albumid) {
 
     include ("connection.php");
     
-    $req = "SELECT nom FROM album";
+    $req = "SELECT nom FROM album WHERE albumid !=".$albumid;
     $sql = mysqli_query($bdd, $req);
     while($col = mysqli_fetch_row($sql)){
         if($nom == $col[0]){
@@ -186,7 +186,7 @@ function ajouter_personne() {
 
     $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     //header('Location : ' . $url);
-    echo '<script>document.location.replace("' . $url . '")</script>';
+    //echo '<script>document.location.replace("' . $url . '")</script>';
 }
 
 function favoris() {
