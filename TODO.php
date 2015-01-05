@@ -9,7 +9,6 @@
  * Creer un album vrac qui gere les tag event, lieu photo par photo
  
  * Corriger gestion accent et liste de nom js
- * Gerer les paysages
  
  * Securiser les formulaires et le js
  

@@ -79,9 +79,10 @@ include('../login/verifauth.php');
             <img src='../image/aide_tag.jpg' />
             <p><br />
             <h4> - Vous pouvez ajouter des personnes en cliquant sur leur nom dans le menu.</h4>
-            <h4>   - Vous pouvez supprimer des personnes en cliquant sur leur tag.</h4>
+            <h4> - Si il n'y a personne sur la photo, vous pouvez la taguer comme vide.</h4>
+            <h4> - Vous pouvez supprimer des personnes en cliquant sur leur tag.</h4>
                 <br/>
-                Si vous vouler modifier les personnes déjà tagué sur la photo il suffit de cliquer sur le bouton Modifier !
+                Si vous voulez modifier les personnes déjà tagué sur la photo il suffit de cliquer sur le bouton Modifier !
             </p>
         </div>
         <div class="row" id="recherche">
@@ -107,6 +108,8 @@ include('../login/verifauth.php');
                 <dd>Recherche les photos où trois personnes sont tagués</dd>
                 <dt>Groupe</dt>
                 <dd>Recherche les photos où plus d'une personne sont tagués</dd>
+                <dt>Vide</dt>
+                <dd>Recherche les photos où il n'y a personne</dd>
             </dl>
             </p>
         </div>

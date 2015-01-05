@@ -1,3 +1,5 @@
+var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
+
 //initialise la preview d'une photo
 function modal(id, personne, date, album, favoris, userId, createurId) {
     $('#personne').empty();
@@ -11,27 +13,27 @@ function modal(id, personne, date, album, favoris, userId, createurId) {
         var c = date.charAt(i);
         date_format += c + separateur[i];
     }
-    if(userId == createurId || userId == 1){
+    if (userId == createurId || userId == 1) {
         $('#btn_close').append('<button type="button" class="btn btn_danger" data-toggle="modal" data-target="#modal">Supprimer</button>');
         $('#suppr_id').val(id);
     }
-    else{
+    else {
         $('#btn_close').append('<button type="submit" class="close" data-dismiss="modal" name="supprimer"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>');
     }
     //Si l'image ne fais pas partie des favoris de l'utilisateur on affiche une etoile bleu
     if (favoris == "True") {
         var favoris = '<form class="form form-inline" role="form" enctype="multipart/form-data"  method="post">'
-                      +'<input type="hidden" id="favoris" name="favoris">'
-                      +'<button onclick = "enlever_favoris('+id+','+userId+');" type="submit" class="btn btn-warning glyphicon glyphicon-star" ></button>';
+                + '<input type="hidden" id="favoris" name="favoris">'
+                + '<button onclick = "enlever_favoris(' + id + ',' + userId + ');" type="submit" class="btn btn-warning glyphicon glyphicon-star" ></button>';
     }
     //Si l'image ne fais pas partie des favoris de l'utilisateur on affiche une etoile jaune
     else {
         var favoris = '<form class="form form-inline" role="form" enctype="multipart/form-data"  method="post">'
-                      +'<input type="hidden" id="favoris" name="favoris">'
-                      +'<button onclick = "ajouter_favoris('+id+','+userId+');" type="submit" class="btn glyphicon glyphicon-star-empty" ></button>';
+                + '<input type="hidden" id="favoris" name="favoris">'
+                + '<button onclick = "ajouter_favoris(' + id + ',' + userId + ');" type="submit" class="btn glyphicon glyphicon-star-empty" ></button>';
     }
     //creation du titre de la photo
-    var titre = favoris + "    " + album + '<small> | ' + date_format + '</small>' +'</form>';
+    var titre = favoris + "    " + album + '<small> | ' + date_format + '</small>' + '</form>';
     //Si personne n'est tagué on affiche le menu pour taguer des personnes
     if (personne == 0) {
 
@@ -51,9 +53,13 @@ function modal(id, personne, date, album, favoris, userId, createurId) {
 //affiche les personnes taggé sur la photo
 function afficher_personne(personne, id) {
     var contenu = '<h4>Personne(s):</h4>';
-    var nom = personne.split(",");
-    for (i = 0; i < nom.length; i++) {
-        contenu = contenu + '<span class="label label-default">' + nom[i] + '</span>';
+    if (personne === "vide") {
+        contenu = contenu + '<span class="label label-danger">Vide</span>';
+    } else {
+        var nom = personne.split(",");
+        for (i = 0; i < nom.length; i++) {
+            contenu = contenu + '<span class="label label-default">' + nom[i] + '</span>';
+        }
     }
     $('#personne').append(contenu);
     $('#menu_personne').append('<button onclick="modifier_personne(\'' + personne + '\', ' + id + ');" type="button" class="btn btn-primary">Modifier</button>');
@@ -62,19 +68,26 @@ function afficher_personne(personne, id) {
 function modifier_personne(personne, id) {
     $('#personne').empty();
     $('#menu_personne').empty();
-    var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas']
     menu =
-            '<form class="navbar-form navbar-left" role="form" enctype="multipart/form-data"  method="post">'
-            + '<dev class="dropdown">'
-            + '<input onkeyup="recherche((this).value);" class="form-control" class="dropdown-toggle"  autocomplete="off" data-toggle="dropdown">'
+            '<form class="form-inline" role="form" enctype="multipart/form-data"  method="post">'
+            + '<div class="form-group">'
+            + '<label class="sr-only" for="tag">Tag personne</label>'
+            + '<div class="dropdown">'
+            + '<div class="input-group col-sm-4">'
+            + '<input id="tag" onkeyup="recherche((this).value);" class="form-control" class="dropdown-toggle"  autocomplete="off" data-toggle="dropdown">'
             + '<input type="hidden" id="selection" name="selection">'
             + '<ul class="dropdown-menu" role="menu" id="menu">'
             + '</ul>'
-            + '</dev>'
+            + '<div class="input-group-addon"><input type="checkbox" onmouseup="setTimeout(checkvide, 100);" id="sspersonne" name="sspersonne"> Sans personne</div>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
             + '<button onclick="terminer(' + id + ');" type="submit" class="btn btn-primary">Sauvegarder</button>'
             + '</form>';
 
     $('#menu_personne').append(menu);
+    var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
+
     for (i = 0; i < nom.length; i++) {
         $('#menu').append('<li><a onclick="ajouter(\'' + nom[i] + '\')">' + nom[i] + '</a></li>');
     }
@@ -83,17 +96,24 @@ function modifier_personne(personne, id) {
     }
     else {
         var contenu = '<h4>Personne(s):</h4>';
-        var nom = personne.split(",");
-        for (i = 0; i < nom.length; i++) {
-            contenu = contenu + '<span onclick="enlever(\'' + nom[i] + '\');" class="label label-default">' + nom[i] + '</span>';
+        if (personne === "vide") {
+            contenu = contenu + '<span class="label label-danger">Vide</span>';
+            $('#sspersonne').attr('checked', true);
+            $('#menu').empty();
+        } else {
+            var nom = personne.split(",");
+            for (i = 0; i < nom.length; i++) {
+                contenu = contenu + '<span class="label label-default">' + nom[i] + '</span>';
+            }
         }
         $('#personne').append(contenu);
     }
 }
 //Recherche les noms
 function recherche(mot) {
-    $('#menu').empty();
     var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
+
+    $('#menu').empty();
     for (i = 0; i < mot.length; i++) {
         var c_mot = mot.charAt(i).toLowerCase();
         for (j = 0; j < nom.length; j++) {
@@ -122,27 +142,43 @@ function enlever(nom) {
     $('#personne').append(contenu);
 
 }
+//ajoute/enleve tag Vide selon l'état de la checkbox
+function checkvide() {
+    if ($('#sspersonne').is(':checked')) {
+        $('#menu').empty();
+        $('#personne').empty();
+        $('#personne').append('<h4>Personne(s):</h4><span class="label label-danger">Vide</span>');
+    }
+    else {
+        for (i = 0; i < nom.length; i++) {
+            $('#menu').append('<li><a onclick="ajouter(\'' + nom[i] + '\')">' + nom[i] + '</a></li>');
+        }
+        $('#personne').empty();
+        $('#personne').append('<h4>Personne(s):</h4>');
+    }
+}
 //termine la modification des tag
 function terminer(id) {
     var val = id + '!';
     var contenu = $('#personne').html();
-
-    var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
-    for (i = 0; i < nom.length; i++) {
-        if (contenu.search(nom[i]) != -1) {
-            val = val + nom[i] + ',';
+    if (contenu.search("Vide") != -1) {
+        val = val + "vide";
+    } else {
+        for (i = 0; i < nom.length; i++) {
+            if (contenu.search(nom[i]) != -1) {
+                val = val + nom[i] + ',';
+            }
         }
+        val = val.replace('é', 'e');
+        val = val.replace('ô', 'o');
     }
-    val = val.replace('é', 'e');
-    val = val.replace('ô', 'o');
-
     $('#selection').val(val);
 }
 function enlever_favoris(id, userId) {
-    var val = "0,"+userId+","+id;
+    var val = "0," + userId + "," + id;
     $('#favoris').val(val);
 }
 function ajouter_favoris(id, userId) {
-    var val = "1,"+userId+","+id;
+    var val = "1," + userId + "," + id;
     $('#favoris').val(val);
 }

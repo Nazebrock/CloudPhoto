@@ -8,6 +8,7 @@
  * 5 = insertion image  info = img_id
  * 6 = Suppr image      info = img_id
  * 7 = clic image       info = img_id
+ * 8 = tag              info = img_id
  */
 include('../login/verifauth.php');
 if ($_SESSION['userId'] != 1) {
