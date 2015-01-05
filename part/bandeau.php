@@ -11,7 +11,7 @@ include('../php/connection.php');
     $nbr_img = mysqli_fetch_row($ret);
     mysqli_free_result($ret);
 //nombre d'image où personne est taggé
-    $req = "SELECT count(img_Id) FROM tag WHERE nbr_personne = 0";
+    $req = "SELECT count(img_Id) FROM tag WHERE nbr_personne = 0 AND Tag_personne != 'vide'";
     $ret = mysqli_query($bdd, $req) or die(mysql_error());
     $nbr_img_empty = mysqli_fetch_row($ret);
     mysqli_free_result($ret);
