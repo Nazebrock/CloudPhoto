@@ -27,7 +27,7 @@ mysqli_free_result($ret);
 //recupere les images sans tag
 $req = "SELECT tag.img_id, tag.tag_personne, DATE_FORMAT(tag.tag_date, '%d%m%Y%H%i%s'), album.nom, tag.userid FROM tag, album WHERE "
         . "tag.tag_albumId = album.albumId AND "
-        . "tag.nbr_personne = 0";
+        . "tag.nbr_personne = 0 AND tag_personne != 'vide'";
 $ret = mysqli_query($bdd, $req) or die(mysql_error());
 $img = array();
 $i = 0;
