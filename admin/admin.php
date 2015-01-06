@@ -90,7 +90,7 @@ if ($_SESSION['userId'] != 1) {
                                     $nbr_tag_fait = mysqli_fetch_row($sql);
                                     mysqli_free_result($sql);
                                     //recupère le nombre de fois où est tagué
-                                    $req = "SELECT count(img_id) FROM tag WHERE tag_personne LIKE '%" . $col[2] . "%'";
+                                    $req = "SELECT count(img_id) FROM tag WHERE tag_personne LIKE '%" . $col[1] . "%'";
                                     $sql = mysqli_query($bdd, $req) or die(mysql_error());
                                     $nbr_tag = mysqli_fetch_row($sql);
                                     mysqli_free_result($sql);

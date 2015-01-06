@@ -4,6 +4,7 @@
 **** TO DO ****
  
  * Synchroniser l'affichage des photos selon la page demandé
+ * mettre des <row> pour ameliorer l'affichage des photos
  * Faire un system de diapo
 
  * Creer un album vrac qui gere les tag event, lieu photo par photo
@@ -12,7 +13,7 @@
  
  * Ajouter tag guest/invite
  
- * Corriger gestion accent et liste de nom js
+ * Ameliorer liste de nom js
  
  * Securiser les formulaires et le js
  

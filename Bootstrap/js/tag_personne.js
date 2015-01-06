@@ -129,8 +129,10 @@ function recherche(mot) {
     $('#menu').empty();
     for (i = 0; i < mot.length; i++) {
         var c_mot = mot.charAt(i).toLowerCase();
+        c_mot.replace("é", 'e');
         for (j = 0; j < nom.length; j++) {
             var c = nom[j].charAt(i).toLowerCase();
+            c.replace("é", 'e');
             if (c_mot != c) {
                 nom.splice(j, 1);
                 j--;
@@ -216,7 +218,7 @@ function terminer(id) {
                 val = val + nomSansGuest[i] + ',';
             }
         }
-        val = val.replace('é', 'e');
+        val = val.replace(/é/g, 'e');
         val = val.replace('ô', 'o');
     }
     $('#selection').val(val);
