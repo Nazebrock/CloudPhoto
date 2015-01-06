@@ -1,4 +1,4 @@
-var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
+var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Guest', 'Hervé', 'Hugo', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
 
 //initialise la preview d'une photo
 function modal(id, personne, date, album, favoris, userId, createurId) {
@@ -58,7 +58,12 @@ function afficher_personne(personne, id) {
     } else {
         var nom = personne.split(",");
         for (i = 0; i < nom.length; i++) {
-            contenu = contenu + '<span class="label label-default">' + nom[i] + '</span>';
+            if (nom[i].search(/Guest/) != -1) {
+                contenu = contenu + '<span class="label label-default">' + nom[i].charAt(0) + ' Guest</span>';
+            }
+            else {
+                contenu = contenu + '<span class="label label-default">' + nom[i] + '</span>';
+            }
         }
     }
     $('#personne').append(contenu);
@@ -86,7 +91,7 @@ function modifier_personne(personne, id) {
             + '</form>';
 
     $('#menu_personne').append(menu);
-    var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
+    var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Guest', 'Hervé', 'Hugo', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
 
     for (i = 0; i < nom.length; i++) {
         $('#menu').append('<li><a onclick="ajouter(\'' + nom[i] + '\')">' + nom[i] + '</a></li>');
@@ -103,7 +108,15 @@ function modifier_personne(personne, id) {
         } else {
             var nom = personne.split(",");
             for (i = 0; i < nom.length; i++) {
-                contenu = contenu + '<span class="label label-default">' + nom[i] + '</span>';
+                console.log(nom[i]);
+                if (nom[i].search(/Guest/) != -1) {
+                    console.log("g");
+                    contenu = contenu + '<span onclick="enlever(\'Guest\');" class="label label-default">' + nom[i].charAt(0) + ' Guest</span>';
+                }
+                else {
+                    console.log("ng");
+                    contenu = contenu + '<span onclick="enlever(\'' + nom[i] + '\');" class="label label-default">' + nom[i] + '</span>';
+                }
             }
         }
         $('#personne').append(contenu);
@@ -111,7 +124,7 @@ function modifier_personne(personne, id) {
 }
 //Recherche les noms
 function recherche(mot) {
-    var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
+    var nom = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Guest', 'Hervé', 'Hugo', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
 
     $('#menu').empty();
     for (i = 0; i < mot.length; i++) {
@@ -130,14 +143,41 @@ function recherche(mot) {
 }
 //ajoute un tag
 function ajouter(nom) {
-    if ($('#personne').html().search(nom) == -1) {
+    var contenu = $('#personne').html();
+    if (nom == "Guest") {
+        if (contenu.search("Guest") == -1) {
+            $('#personne').append('<span onclick="enlever(\'' + nom + '\');" class="label label-default">1 ' + nom + '</span>');
+        }
+        else {
+            //recupere le nbr de guest
+            var nbr_guest = Number(contenu.charAt(contenu.search(/\d\sGuest/)));
+            var guestAdd = nbr_guest + 1;
+            if (guestAdd != 10) {
+                contenu = contenu.replace('<span onclick="enlever(\'' + nom + '\');" class="label label-default">' + nbr_guest + ' ' + nom + '</span>', '<span onclick="enlever(\'' + nom + '\');" class="label label-default">' + guestAdd + ' ' + nom + '</span>');
+                $('#personne').empty();
+                $('#personne').append(contenu);
+            }
+        }
+    }
+    else if (contenu.search(nom) == -1) {
         $('#personne').append('<span onclick="enlever(\'' + nom + '\');" class="label label-default">' + nom + '</span>');
     }
 }
 //enleve un tag
 function enlever(nom) {
     var contenu = $('#personne').html();
-    contenu = contenu.replace('<span onclick="enlever(\'' + nom + '\');" class="label label-default">' + nom + '</span>', " ");
+    if (nom == "Guest") {
+        //recupere le nbr de guest
+        var nbr_guest = Number(contenu.charAt(contenu.search(/\d\sGuest/)));
+        var guestSuppr = nbr_guest - 1;
+        if (guestSuppr != 0) {
+            contenu = contenu.replace('<span onclick="enlever(\'' + nom + '\');" class="label label-default">' + nbr_guest + ' ' + nom + '</span>', '<span onclick="enlever(\'' + nom + '\');" class="label label-default">' + guestSuppr + ' ' + nom + '</span>');
+        } else {
+            contenu = contenu.replace('<span onclick="enlever(\'' + nom + '\');" class="label label-default">1 ' + nom + '</span>', " ");
+        }
+    } else {
+        contenu = contenu.replace('<span onclick="enlever(\'' + nom + '\');" class="label label-default">' + nom + '</span>', " ");
+    }
     $('#personne').empty();
     $('#personne').append(contenu);
 
@@ -159,14 +199,21 @@ function checkvide() {
 }
 //termine la modification des tag
 function terminer(id) {
+    var nomSansGuest = ['Adrien', 'Alain', 'Aline', 'Audrey', 'Benjamin', 'Bérénice', 'Enzo', 'Gérald', 'Gustave', 'Hervé', 'Hugo', 'Jean-Christophe', 'Jeanine', 'Jérôme', 'Julie', 'Mael', 'Marianne', 'Martine', 'Mila', 'Patou', 'Patricia', 'Philippe', 'Renaud', 'Sylvie', 'Thomas'];
+
     var val = id + '!';
     var contenu = $('#personne').html();
     if (contenu.search("Vide") != -1) {
         val = val + "vide";
     } else {
-        for (i = 0; i < nom.length; i++) {
-            if (contenu.search(nom[i]) != -1) {
-                val = val + nom[i] + ',';
+        //recupere le nombre de guest
+        if (contenu.search(/Guest/) != -1) {
+            var nbr_guest = Number(contenu.charAt(contenu.search(/\d\sGuest/)));
+            val = val + nbr_guest + "_Guest,";
+        }
+        for (i = 0; i < nomSansGuest.length; i++) {
+            if (contenu.search(nomSansGuest[i]) != -1) {
+                val = val + nomSansGuest[i] + ',';
             }
         }
         val = val.replace('é', 'e');

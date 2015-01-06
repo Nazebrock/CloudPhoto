@@ -18,11 +18,11 @@
                     <ul class="dropdown-menu" role="menu">
                         <?php
                         include ("../php/connection.php");
-                        $req = "SELECT nom, albumid " .
-                                "FROM album ORDER BY nom";
+                        $req = "SELECT nom, albumid , tag_event " .
+                                "FROM album ORDER BY tag_event";
                         $ret = mysqli_query($bdd, $req) or die(mysql_error());
                         while ($col = mysqli_fetch_row($ret)) {
-                            echo "<li><a href=\"afficher.php?id=1&album=" . $col[1] . "\">" . $col[0] . "</a></li>";
+                            echo '<li><a href="afficher.php?id=1&album=' . $col[1] . '">' . $col[0] . ' <div class="label label-primary">'.ucfirst(strtolower($col[2])).'</div></a></li>';
                         }
                         mysqli_free_result($ret);
                         mysqli_close($bdd);
