@@ -17,7 +17,7 @@ $option = False;
 $vide = False;
 
 //on ne garde que les lettres et les nombres
-$recherche = preg_replace('/[^a-z\d]+/i', " ", $recherche);
+$recherche = preg_replace('/[^a-z\déô]+/i', " ", $recherche);
 //on enleve les espaces en début et fin de chaine
 $recherche = trim($recherche);
 //on enleve les espaces multiples
