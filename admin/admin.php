@@ -91,9 +91,9 @@ if ($_SESSION['userId'] != 1) {
                                     mysqli_free_result($sql);
                                     //recupère le nombre de fois où est tagué
                                     $nom = $col[1];
-                                    str_replace("é", "e", $nom);
-                                    str_replace("ë", "e", $nom);
-                                    str_replace("ô", "o", $nom);
+                                    $nom = str_replace("é", "e", $nom);
+                                    $nom = str_replace("ë", "e", $nom);
+                                    $nom = str_replace("ô", "o", $nom);
                                     $req = "SELECT count(img_id) FROM tag WHERE tag_personne LIKE '%" . $nom . "%'";
                                     $sql = mysqli_query($bdd, $req) or die(mysql_error());
                                     $nbr_tag = mysqli_fetch_row($sql);
