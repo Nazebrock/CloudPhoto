@@ -30,6 +30,7 @@ if ($recherche == "") {
     $recherche = strtolower($recherche);
     //on enleve les accents
     $recherche = str_replace('é', 'e', $recherche);
+    $recherche = str_replace('ë', 'e', $recherche);
     $recherche = str_replace('ô', 'o', $recherche);
     $tab_recherche = explode(' ', $recherche);
 
