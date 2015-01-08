@@ -159,7 +159,7 @@ function modifier_album($albumid) {
         }
     }
     mysqli_free_result($sql);
-
+    //update album
     $sqlalbum = "UPDATE album " .
             "SET nom = '" . $nom . "', tag_date = '" . $date . "', tag_lieu = '" . $lieu . "', tag_event = '" . $event . "'" .
             "WHERE albumid = " . $albumid;

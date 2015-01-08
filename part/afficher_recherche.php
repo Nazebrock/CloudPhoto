@@ -72,7 +72,7 @@ if ($recherche == "") {
     } else {
 
         $sql = "SELECT img_id, tag_personne, DATE_FORMAT(T.tag_date, '%d%m%Y%H%i%s'), nom, T.userid " .
-                "FROM tag T, album WHERE tag_albumid = albumid AND ";
+                "FROM tag T, album a WHERE tag_albumid = albumid AND ";
 
         if ($option == True) {
             if ($nbr_personne > 0) {
@@ -87,9 +87,9 @@ if ($recherche == "") {
         foreach ($tab_recherche as $mot) {
             if ($mot != "solo" && $mot != "duo" && $mot != "trio" && $mot != "groupe" && $mot != "vide") {
                 if ($vide == true) {
-                    $sql = $sql . " (T.tag_lieu LIKE '%" . $mot . "%' OR T.tag_event LIKE '%" . $mot . "%') AND";
+                    $sql = $sql . " (a.tag_lieu LIKE '%" . $mot . "%' OR a.tag_event LIKE '%" . $mot . "%') AND";
                 } else {
-                    $sql = $sql . " ( tag_personne LIKE '%" . $mot . "%' OR T.tag_lieu LIKE '%" . $mot . "%' OR T.tag_event LIKE '%" . $mot . "%') AND";
+                    $sql = $sql . " ( tag_personne LIKE '%" . $mot . "%' OR a.tag_lieu LIKE '%" . $mot . "%' OR a.tag_event LIKE '%" . $mot . "%') AND";
                 }
             }
         }
@@ -111,7 +111,7 @@ if ($recherche == "") {
             $img[$i][4] = $col[4];
             $i++;
         }
-        $nbr = $i + 1; //nombre de photos a afficher
+        $nbr[0] = $i + 1; //nombre de photos a afficher
         mysqli_free_result($ret);
         if ($nbr == 1) {
             echo '<div class="col-lg-offset-1"><h3 class="text-warning">La recherche n\'a donné aucun résultat</h3></div>';

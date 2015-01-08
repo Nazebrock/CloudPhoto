@@ -29,6 +29,7 @@
                         ?>
                     </ul>
                 </li>
+                <li><a href="video.php">Montage Vidéo</a></li>
             </ul>
             <?php
             include ("../php/rechercher.php");
@@ -42,6 +43,7 @@
                 </div>
                 <button type="submit" class="btn btn-default glyphicon glyphicon-search" ></button>
             </form>
+            
             <ul class="nav navbar-nav navbar-right hidden-xs">
                 <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['prenom']; ?><span class="caret"></span></a>

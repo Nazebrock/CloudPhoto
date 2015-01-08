@@ -14,15 +14,15 @@ if (isset($_GET['id']) && isset($_GET['size'])) {
         $ImageChoisie = imagecreatefromstring($col[2]);
         
         $TailleImageChoisie = getimagesizefromstring($col[2]);
-        
-        if($TailleImageChoisie[1] >= $TailleImageChoisie[0]){//si la largeur est plus grade que la hauteur
+        if($TailleImageChoisie[1] >= $TailleImageChoisie[0]){//si la hauteur est plus grande que la largeur
             $NouvelleLargeur = $size;
             $NouvelleHauteur = ( ($TailleImageChoisie[1] * (($NouvelleLargeur) / $TailleImageChoisie[0])) );
         }
-        elseif($TailleImageChoisie[0] > $TailleImageChoisie[1]){//si la hauteur est plus grande que la largeur
+        elseif($TailleImageChoisie[0] > $TailleImageChoisie[1]){//si la largeur est plus grade que la hauteur
             $NouvelleHauteur = $size;
             $NouvelleLargeur = ( ($TailleImageChoisie[0] * (($NouvelleHauteur) / $TailleImageChoisie[1])) );
         }
+
         $NouvelleImage = imagecreatetruecolor($NouvelleLargeur, $NouvelleHauteur) or die("Erreur");
 
         imagecopyresampled($NouvelleImage, $ImageChoisie, 0, 0, 0, 0, $NouvelleLargeur, $NouvelleHauteur, $TailleImageChoisie[0], $TailleImageChoisie[1]);

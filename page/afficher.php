@@ -64,9 +64,12 @@ if ($id == 4) {
                                 if ($cpt == 1) {
                                     echo '<div role="tabpanel" class="tab-pane active" id="' . $i . '">'; //met le premier tabpanel actif
                                     $i++;
-                                } else if ($cpt % 49 == 0) {
+                                } else if ($cpt % 48 == 1) {
                                     echo '<div role="tabpanel" class="tab-pane" id="' . $i . '">'; //sinon met simplement un tabpanel
                                     $i++;
+                                }
+                                if($cpt % 6 == 1){
+                                    echo '<div class="row">';//ouvre une ligne toute les 6 photos
                                 }
                                 $favoris = "False";
                                 foreach ($fav as $id) {
@@ -81,8 +84,11 @@ if ($id == 4) {
                                 . '<img src="../php/thumbnail.php?id=' . $image[0] . '&size=200">'
                                 . '</button>'
                                 . '</div>';
+                                if($cpt % 6 == 0){
+                                    echo '</div>';//ferme le "row"
+                                }
                                 if ($cpt % 48 == 0) {
-                                    echo '</div>';
+                                    echo '</div>';//ferme le tabpanel tout les 48 images
                                 }
                                 $cpt++;
                             }
