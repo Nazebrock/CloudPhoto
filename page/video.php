@@ -35,7 +35,7 @@ include('../login/verifauth.php');
                                 </div>
                                 <video controls src="../../video/80_ans_mamie.mp4">80 ans de mamie</video>
                             </div>
-                            <div role="tabpanel" class="tab-pane active" id="noel">
+                            <div role="tabpanel" class="tab-pane" id="noel">
                                 <div class="well">
                                     Un Montage vidéo qui avait bugué sur le rendu à l'époque où je l'avais fait du coup il y a des images de travers et des bandes noires<br>
                                     de temps en temps. Et bien entendu, les fautes d'orthographes sont toujours présentent (c'est ma signature).
