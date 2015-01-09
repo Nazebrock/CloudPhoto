@@ -3,17 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/CloudPhoto/admin/admin.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/page/video.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/TODO.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/page/afficher.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/page/aide.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/part/layout.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/php/thumbnail.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/Bootstrap/js/tag_personne.js</file>
+            <file>file:/C:/wamp/www/CloudPhoto/page/login.php</file>
+            <file>file:/C:/wamp/www/CloudPhoto/admin/admin.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/part/bandeau.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/php/transfert.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/part/afficher_recherche.php</file>
-            <file>file:/C:/wamp/www/CloudPhoto/part/layout.php</file>
-            <file>file:/C:/wamp/www/CloudPhoto/page/aide.php</file>
             <file>file:/C:/wamp/www/CloudPhoto/part/afficher_notag.php</file>
-            <file>file:/C:/wamp/www/CloudPhoto/Bootstrap/js/tag_personne.js</file>
-            <file>file:/C:/wamp/www/CloudPhoto/admin/traffic.php</file>
-            <file>file:/C:/wamp/www/CloudPhoto/php/chart.php</file>
         </group>
     </open-files>
 </project-private>

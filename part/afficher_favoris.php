@@ -1,13 +1,3 @@
-<div class="row">
-    <div class="col-lg-offset-1">
-        <div class="col-lg-9">
-            <div class="page-header"><h1>Mes favoris</h1></div>
-        </div>
-    </div>
-
-</div>
-
-
 <?php
 include ("../php/connection.php");
 //on recupere le nombre de photo à afficher
@@ -37,5 +27,18 @@ while ($col = mysqli_fetch_row($ret)) {
 }
 mysqli_free_result($ret);
 ?>
+<div class="row">
+    <div class="col-lg-offset-1">
+        <div class="col-lg-9">
+            <div class="page-header"><h1>Mes favoris
+            <?php
+            echo " <a href=\"diapo.php?id=";
+            foreach ($img as $image) {
+                echo $image[0] . ".";
+            }
+            echo '"class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span></a></h1></div>';
+            ?>
+        </div>
+    </div>
 
-
+</div>

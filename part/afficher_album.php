@@ -1,23 +1,11 @@
-<div class="row">
-    <div class="col-lg-offset-1">
-        <div class="col-lg-9">
-            <?php
-            include ("../php/connection.php");
-            $req = "SELECT createurId, nom, DATE_FORMAT(tag_date, '%d/%m/%Y'), tag_lieu, tag_event " .
-                    "FROM album WHERE albumid = " . $albumId;
-            $ret = mysqli_query($bdd, $req) or die(mysql_error());
-            $album = mysqli_fetch_row($ret);
-            mysqli_free_result($ret);
-            echo "<div class=\"page-header\"><h1>" . $album[1] . "<small> | " . $album[4] . " à " . $album[3] . " le " . $album[2] . "</small>";
-            if ($album[0] == $_SESSION['userId'] || $_SESSION['userId'] == 1) {
-                echo "<a href=\"modifier_album.php?id=" . $albumId . "\"class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-cog\"></span></a></h1></div>";
-            }
-            ?>
-
-        </div>
-    </div>
-</div>
 <?php
+//recupere info album
+include ("../php/connection.php");
+$req = "SELECT createurId, nom, DATE_FORMAT(tag_date, '%d/%m/%Y'), tag_lieu, tag_event " .
+        "FROM album WHERE albumid = " . $albumId;
+$ret = mysqli_query($bdd, $req) or die(mysql_error());
+$album = mysqli_fetch_row($ret);
+mysqli_free_result($ret);
 //recupere les favoris
 $favoris = "False";
 $req = "SELECT imgID FROM favoris WHERE UserID = '" . $_SESSION['userId'] . "' AND imgID IN " .
@@ -51,6 +39,25 @@ while ($col = mysqli_fetch_row($ret)) {
 }
 mysqli_free_result($ret);
 ?>
+<div class="row">
+    <div class="col-lg-offset-1">
+        <div class="col-lg-9">
+            <?php
+            echo "<div class=\"page-header\"><h1>" . $album[1] . "<small> | " . $album[4] . " à " . $album[3] . " le " . $album[2] . "</small>";
+            echo " <a href=\"diapo.php?id=";
+            foreach ($img as $image) {
+                echo $image[0] . ".";
+            }
+            echo '"class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span></a> ';
+            if ($album[0] == $_SESSION['userId'] || $_SESSION['userId'] == 1) {
+                echo "<a href=\"modifier_album.php?id=" . $albumId . "\"class=\"btn btn-default btn-sm\"><span class=\"glyphicon glyphicon-cog\"></span></a></h1></div>";
+            }
+            ?>
+
+        </div>
+    </div>
+</div>
+
 
 
 

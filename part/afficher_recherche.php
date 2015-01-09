@@ -1,13 +1,3 @@
-<div class="row">
-    <div class="col-lg-offset-1">
-        <div class="col-lg-9">
-            <?php
-            echo "<div class=\"page-header\"><h1>Recherche<small> | " . $recherche . "</small></h1></div>";
-            ?>
-        </div>
-    </div>
-</div>
-
 <?php
 $solo = False;
 $duo = False;
@@ -17,7 +7,7 @@ $option = False;
 $vide = False;
 
 //on ne garde que les lettres et les nombres
-$recherche = preg_replace('/[^a-z\déô]+/i', " ", $recherche);
+$recherche = preg_replace('/[^a-z\déôë]+/i', " ", $recherche);
 //on enleve les espaces en début et fin de chaine
 $recherche = trim($recherche);
 //on enleve les espaces multiples
@@ -120,5 +110,21 @@ if ($recherche == "") {
     }
 }
 ?>
+<div class="row">
+    <div class="col-lg-offset-1">
+        <div class="col-lg-9">
+            <?php
+            echo "<div class=\"page-header\"><h1>Recherche<small> | " . $recherche . "</small>";
+            echo " <a href=\"diapo.php?id=";
+            foreach ($img as $image) {
+                echo $image[0] . ".";
+            }
+            echo '"class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span></a></h1></div>';
+            ?>
+        </div>
+    </div>
+</div>
+
+
 
 

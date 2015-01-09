@@ -31,9 +31,9 @@ include('../login/verifauth.php');
                                     <?php
                                     for ($i = 0; $i < 10; $i++) {
                                         if ($i == 0) {
-                                            echo '<li data-target="#carousel" data-slide-to="' . $img[$i] . '" class="active"></li>';
+                                            echo '<li data-target="#carousel" data-slide-to="' . $i . '" class="active"></li>';
                                         } else {
-                                            echo '<li data-target="#carousel" data-slide-to="' . $img[$i] . '"></li>';
+                                            echo '<li data-target="#carousel" data-slide-to="' . $i . '"></li>';
                                         }
                                     }
                                     ?>
@@ -44,9 +44,9 @@ include('../login/verifauth.php');
                                     <?php
                                     for ($i = 0; $i < 10; $i++) {
                                         if ($i == 0) {
-                                            echo '<div class="item active"><img src="../php/thumbnail.php?id=' . $img[$i] . '&size=1000"></div>';
+                                            echo '<div class="item active" ><img src="../php/thumbnail.php?id=' . $img[$i] . '&size=1000"></div>';
                                         } else {
-                                            echo '<div class="item"><img src="../php/thumbnail.php?id=' . $img[$i] . '&size=1000"></div>';
+                                            echo '<div class="item" ><img src="../php/thumbnail.php?id=' . $img[$i] . '&size=1000"></div>';
                                         }
                                     }
                                     ?>

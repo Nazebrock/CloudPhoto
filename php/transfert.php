@@ -181,7 +181,7 @@ function ajouter_personne() {
     } else {
         $personnes = explode(',', $personne);
         $nbr_personnes = count($personnes) - 1;
-        
+
         $sqlperso = "UPDATE tag " .
                 "SET Tag_personne = '" . $personne . "', nbr_personne = " . $nbr_personnes . " WHERE img_id = " . $id;
         $reqperso = mysqli_query($bdd, $sqlperso) or die(mysql_error());

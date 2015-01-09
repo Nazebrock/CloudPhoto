@@ -68,8 +68,8 @@ if ($id == 4) {
                                     echo '<div role="tabpanel" class="tab-pane" id="' . $i . '">'; //sinon met simplement un tabpanel
                                     $i++;
                                 }
-                                if($cpt % 6 == 1){
-                                    echo '<div class="row">';//ouvre une ligne toute les 6 photos
+                                if ($cpt % 6 == 1) {
+                                    echo '<div class="row">'; //ouvre une ligne toute les 6 photos
                                 }
                                 $favoris = "False";
                                 foreach ($fav as $id) {
@@ -84,11 +84,11 @@ if ($id == 4) {
                                 . '<img src="../php/thumbnail.php?id=' . $image[0] . '&size=200">'
                                 . '</button>'
                                 . '</div>';
-                                if($cpt % 6 == 0){
-                                    echo '</div>';//ferme le "row"
+                                if ($cpt % 6 == 0) {
+                                    echo '</div>'; //ferme le "row"
                                 }
                                 if ($cpt % 48 == 0) {
-                                    echo '</div>';//ferme le tabpanel tout les 48 images
+                                    echo '</div>'; //ferme le tabpanel tout les 48 images
                                 }
                                 $cpt++;
                             }
@@ -105,6 +105,7 @@ if ($id == 4) {
                                     <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
                                 <div class="modal-body thumbnail">
+                                    
                                     <img id="modal-image" src="">
                                     <div id="personne" ></div>
                                 </div>
